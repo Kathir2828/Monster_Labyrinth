@@ -33,7 +33,7 @@ function HomePage() {
 
   const fetchDungeonSolution = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/escape", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/escape", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grid })
@@ -94,7 +94,7 @@ function HomePage() {
       }
       setGrid(copyGrid);
 
-      const response = await fetch("http://localhost:3000/api/random", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/random", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grid: copyGrid })
