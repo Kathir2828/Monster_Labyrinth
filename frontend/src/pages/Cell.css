@@ -1,0 +1,54 @@
+/* Cell.css */
+
+.cell {
+  width: 22px;
+  height: 22px;
+  background-color: #151922;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover highlights to indicate drawing/placing */
+.cell:hover {
+  z-index: 10;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cell:not(.cell-goblin):not(.cell-orc):not(.cell-wall):not(.cell-start):not(.cell-exit):hover {
+  background-color: #3b4252;
+}
+
+/* Wall block - Dark obsidian brick styling */
+.cell-wall {
+  background-color: #0000008f;
+  background-image: radial-gradient(circle, #2a2d3d 12%, transparent 13%);
+  background-size: 5px 5px;
+  border: 1px solid #252836;
+}
+
+/* Start Point - Neon green rune */
+.cell-start {
+  background-color: #00f5d4;
+  border-radius: 0;
+}
+
+/* Exit Point - Violet portal */
+.cell-exit {
+  background-color: #7b2cbf;
+  border-radius: 50%;
+}
+
+/* Goblin - Goblin green visual signature */
+.cell-goblin {
+  background-color: #df2828;
+  border-radius: 0;
+}
+
+/* Orc - Red brute signature shape */
+.cell-orc {
+  background-color: #e63946;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
