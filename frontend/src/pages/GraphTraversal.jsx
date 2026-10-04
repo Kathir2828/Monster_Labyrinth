@@ -60,7 +60,7 @@ function GraphTraversal() {
 
   const fetchRandomMaze = async () => {
     try {
-      const response = await fetch("http://monster-labyrinth.onrender.com/api/random-maze", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/random-maze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grid })
@@ -76,7 +76,7 @@ function GraphTraversal() {
   const startBfs = async () => {
     try {
       const gridCopy = grid.map((row) => row.map((cell) => { return { ...cell, option: [...cell.option] } }));
-      const response = await fetch("http://monster-labyrinth.onrender.com/api/start-bfs", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/start-bfs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -104,7 +104,7 @@ function GraphTraversal() {
   const startDfs = async () => {
     try {
       const gridCopy = grid.map((row) => row.map((cell) => { return { ...cell, option: [...cell.option] } }));
-      const response = await fetch("http://monster-labyrinth.onrender.com/api/start-dfs", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/start-dfs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

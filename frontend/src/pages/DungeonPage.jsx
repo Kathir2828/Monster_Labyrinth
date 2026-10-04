@@ -33,7 +33,7 @@ function DungeonPage() {
 
   const fetchDungeonSolution = async () => {
     try {//https://monster-labyrinth.onrender.com/api/escape 
-      const response = await fetch("http://monster-labyrinth.onrender.com/api/escape", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/escape", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grid })
@@ -94,7 +94,7 @@ function DungeonPage() {
       }
       setGrid(copyGrid);
 
-      const response = await fetch("http://monster-labyrinth.onrender.com/api/random", {
+      const response = await fetch("https://monster-labyrinth.onrender.com/api/random", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grid: copyGrid })
