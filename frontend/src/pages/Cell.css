@@ -22,7 +22,7 @@
 }
 
 /* Wall block - Dark obsidian brick styling */
-.cell-wall {
+.cell.cell-wall {
   background-color: #0000008f;
   background-image: radial-gradient(circle, #2a2d3d 12%, transparent 13%);
   background-size: 5px 5px;
@@ -30,25 +30,21 @@
 }
 
 /* Start Point - Neon green rune */
-.cell-start {
+.cell.cell-start {
   background-color: #00f5d4;
-  border-radius: 0;
 }
 
 /* Exit Point - Violet portal */
-.cell-exit {
+.cell.cell-exit {
   background-color: #7b2cbf;
-  border-radius: 50%;
 }
 
 /* Goblin - Goblin green visual signature */
-.cell-goblin {
-  background-color: #df2828;
-  border-radius: 0;
+.cell.cell-goblin {
+  background-color: #c21919;
 }
 
 /* Orc - Red brute signature shape */
-.cell-orc {
+.cell.cell-orc {
   background-color: #e63946;
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }

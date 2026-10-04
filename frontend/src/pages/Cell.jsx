@@ -12,8 +12,6 @@ function Cell({ cell, option, setGrid }) {
   else if (cell.option[4] == 1) extraClass = 'cell-exit';
 
   const cellClick = () => {
-
-
     setGrid((prevGrid) => {
       const copy = prevGrid.map(row => row.map(cell => ({ ...cell, option: [...cell.option] })));
       const newCell = copy[cell.i][cell.j];

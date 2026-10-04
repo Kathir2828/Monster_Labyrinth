@@ -1,0 +1,54 @@
+/* Button toolbar container */
+div:has(> button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 25px;
+  padding: 12px;
+  background: rgba(22, 26, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(8px);
+}
+
+/* Styled control buttons */
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #1f4068;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background: #aa3bff;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Dungeon grid board */
+.dungeon-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #0f111a;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid #1f4068;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+/* Flex rows to align cells horizontally */
+.dungeon-row {
+  display: flex;
+}

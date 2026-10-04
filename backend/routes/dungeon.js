@@ -5,7 +5,6 @@ const router = express.Router();
 router.post("/random", (req, res) => {
   let { grid } = req.body;
 
-
   const row = grid.length;
   const col = grid[0].length;
   let human = true;
@@ -14,8 +13,8 @@ router.post("/random", (req, res) => {
     for (let j = 0; j < col; j++) {
       const val = Math.random() * 101;
       // 0 - 10 goblin, 11- 15 orc, 16 - 70 wall, 71 - 80 human, 81 - 100 exit
-      if (val <= 1) grid[i][j].option[0] = 1; // goblin
-      else if (val <= 2) grid[i][j].option[4] = 1; // exit
+      if (val <= 0.4) grid[i][j].option[0] = 1; // goblin
+      else if (val <= 0.65) grid[i][j].option[4] = 1; // exit
       else if (val <= 15) grid[i][j].option[2] = 1; // wall
       else if (val <= 80) continue;
       else if (human) human = false, grid[i][j].option[3] = 1;
@@ -25,6 +24,82 @@ router.post("/random", (req, res) => {
     grid
   });
 });
+
+router.post("/random-maze", (req, res) => {
+  let { grid } = req.body;
+
+  const row = grid.length;
+  const col = grid[0].length;
+
+  for (let i = 0; i < row; i++) {
+    for (let j = 0; j < col; j++) {
+      if ((i === 0 && j === 0) || (i === row - 1 && j === col - 1)) continue;
+      grid[i][j].option = [0, 0, 0];  // delete previous maze value
+      const val = Math.random() * 10;
+
+      if (val <= 2) grid[i][j].option[2] = 1; // wall      
+    }
+  }
+  return res.json({
+    grid
+  });
+});
+
+router.post("/start-bfs", (req, res) => {
+  const { grid } = req.body;
+  let row = grid.length, col = grid[0].length;
+  let visited = Array.from({ length: row }, () => Array(col).fill(0));
+  visited[0][0] = 1;
+  let stack = [{ i: 0, j: 0 }];
+  let path = [];
+  let X = [0, -1, 1, 0];
+  let Y = [1, 0, 0, -1];
+  while (stack.length != 0) {
+    const curr = stack.shift();
+    let x = curr.i, y = curr.j;
+    for (let i = 0; i < X.length; i++) {
+      let currI = x + X[i];
+      let currJ = y + Y[i];
+      if (currI < 0 || currI >= row || currJ < 0 || currJ >= col || visited[currI][currJ] || grid[currI][currJ].option[2] === 1) continue;
+      visited[currI][currJ] = 1;
+      path.push({ i: currI, j: currJ });
+      stack.push({ i: currI, j: currJ });
+      if (currI == row - 1 && currJ == col - 1) stack = [];
+    }
+  }
+  return res.json({
+    path
+  });
+})
+
+router.post("/start-dfs", (req, res) => {
+  const { grid } = req.body;
+  let row = grid.length, col = grid[0].length;
+  let visited = Array.from({ length: row }, () => Array(col).fill(0));
+  visited[0][0] = 1;
+  let stack = [{ i: 0, j: 0 }];
+  let path = [];
+  let X = [0, 1, -1, 0];
+  let Y = [-1, 0, 0, 1];
+  // let X = [0, -1, 1, 0];
+  // let Y = [1, 0, 0, -1];
+  while (stack.length != 0) {
+    const curr = stack.pop();
+    path.push({ i: curr.i, j: curr.j });
+    let x = curr.i, y = curr.j;
+    for (let i = 0; i < X.length; i++) {
+      let currI = x + X[i];
+      let currJ = y + Y[i];
+      if (currI < 0 || currI >= row || currJ < 0 || currJ >= col || visited[currI][currJ] || grid[currI][currJ].option[2] === 1) continue;
+      visited[currI][currJ] = 1;
+      stack.push({ i: currI, j: currJ });
+      if (currI == row - 1 && currJ == col - 1) stack = [];
+    }
+  }
+  return res.json({
+    path
+  });
+})
 
 router.post("/escape", (req, res) => {
   const { grid } = req.body;
